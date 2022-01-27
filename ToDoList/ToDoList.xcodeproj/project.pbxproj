@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A29CCE7E27A27D21006B2D41 /* InputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29CCE7D27A27D21006B2D41 /* InputBar.swift */; };
+		A29CCE8027A28AF8006B2D41 /* AddNewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29CCE7F27A28AF8006B2D41 /* AddNewButton.swift */; };
+		A2F5229427A1443E00299430 /* DataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F5229327A1443E00299430 /* DataFlow.swift */; };
 		A2F5C5F727A0EED300299430 /* ToDoListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F5C5F627A0EED300299430 /* ToDoListApp.swift */; };
 		A2F5C5F927A0EED300299430 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F5C5F827A0EED300299430 /* ContentView.swift */; };
 		A2F5C5FB27A0EED600299430 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2F5C5FA27A0EED600299430 /* Assets.xcassets */; };
@@ -14,6 +17,9 @@
 		A2F5C60827A0EED600299430 /* ToDoListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F5C60727A0EED600299430 /* ToDoListTests.swift */; };
 		A2F5C61227A0EED600299430 /* ToDoListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F5C61127A0EED600299430 /* ToDoListUITests.swift */; };
 		A2F5C61427A0EED600299430 /* ToDoListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F5C61327A0EED600299430 /* ToDoListUITestsLaunchTests.swift */; };
+		A2F5C62227A1380A00299430 /* Redux.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F5C62127A1380A00299430 /* Redux.swift */; };
+		A2F5C62527A13A9B00299430 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F5C62427A13A9B00299430 /* AppState.swift */; };
+		A2F5C62727A13BB800299430 /* TodoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F5C62627A13BB800299430 /* TodoModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A29CCE7D27A27D21006B2D41 /* InputBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBar.swift; sourceTree = "<group>"; };
+		A29CCE7F27A28AF8006B2D41 /* AddNewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewButton.swift; sourceTree = "<group>"; };
+		A2F5229327A1443E00299430 /* DataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFlow.swift; sourceTree = "<group>"; };
 		A2F5C5F327A0EED300299430 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2F5C5F627A0EED300299430 /* ToDoListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListApp.swift; sourceTree = "<group>"; };
 		A2F5C5F827A0EED300299430 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,6 +53,9 @@
 		A2F5C60D27A0EED600299430 /* ToDoListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2F5C61127A0EED600299430 /* ToDoListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListUITests.swift; sourceTree = "<group>"; };
 		A2F5C61327A0EED600299430 /* ToDoListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A2F5C62127A1380A00299430 /* Redux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Redux.swift; sourceTree = "<group>"; };
+		A2F5C62427A13A9B00299430 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		A2F5C62627A13BB800299430 /* TodoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +83,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A29CCE7C27A27CFD006B2D41 /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				A29CCE7D27A27D21006B2D41 /* InputBar.swift */,
+				A29CCE7F27A28AF8006B2D41 /* AddNewButton.swift */,
+			);
+			path = Input;
+			sourceTree = "<group>";
+		};
 		A2F5C5EA27A0EED300299430 = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +115,9 @@
 		A2F5C5F527A0EED300299430 /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				A29CCE7C27A27CFD006B2D41 /* Input */,
+				A2F5C62327A13A4E00299430 /* Model */,
+				A2F5C62027A137DE00299430 /* Redux */,
 				A2F5C5F627A0EED300299430 /* ToDoListApp.swift */,
 				A2F5C5F827A0EED300299430 /* ContentView.swift */,
 				A2F5C5FA27A0EED600299430 /* Assets.xcassets */,
@@ -125,6 +149,24 @@
 				A2F5C61327A0EED600299430 /* ToDoListUITestsLaunchTests.swift */,
 			);
 			path = ToDoListUITests;
+			sourceTree = "<group>";
+		};
+		A2F5C62027A137DE00299430 /* Redux */ = {
+			isa = PBXGroup;
+			children = (
+				A2F5C62127A1380A00299430 /* Redux.swift */,
+			);
+			path = Redux;
+			sourceTree = "<group>";
+		};
+		A2F5C62327A13A4E00299430 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A2F5C62427A13A9B00299430 /* AppState.swift */,
+				A2F5C62627A13BB800299430 /* TodoModel.swift */,
+				A2F5229327A1443E00299430 /* DataFlow.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,7 +300,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2F5C5F927A0EED300299430 /* ContentView.swift in Sources */,
+				A2F5229427A1443E00299430 /* DataFlow.swift in Sources */,
+				A29CCE7E27A27D21006B2D41 /* InputBar.swift in Sources */,
 				A2F5C5F727A0EED300299430 /* ToDoListApp.swift in Sources */,
+				A29CCE8027A28AF8006B2D41 /* AddNewButton.swift in Sources */,
+				A2F5C62227A1380A00299430 /* Redux.swift in Sources */,
+				A2F5C62727A13BB800299430 /* TodoModel.swift in Sources */,
+				A2F5C62527A13A9B00299430 /* AppState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
