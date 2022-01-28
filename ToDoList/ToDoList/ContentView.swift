@@ -9,27 +9,45 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var store: DefaultStore<AppState>
+    
+    init() {
+        UINavigationBar
+            .appearance()
+            .backgroundColor = UIColor(named: "listbg")
+    }
+    
     var body: some View {
-        /*
-        Text("\(store.getCurrent().todoData.count)")
-            .padding()
-        Menu("Options") {
-            Button("Order Now", action: placeOrder)
-            Button("Adjust Order", action: adjustOrder)
-            Button("Cancel", action: cancelOrder)
-        }
-         */
         NavigationView {
-            ZStack(alignment: .bottom) {
-                VStack{
+            ZStack {
+                VStack {
+                    /// make list content not under status bar
+                    Spacer()
+                        .frame(height: 20)
+                    HStack(alignment: .top, spacing: 0) {
+                        ToDoList()
+                            .padding(.bottom, 70)
+                            .clipped()
+                    }
+                }
+                /// set background color under status bar
+                .background(Color("listbg"))
+
+
+                VStack(){
                     Spacer()
                     InputBar(text: "")
                         .frame(idealHeight: 50, maxHeight: 50)
-                        .padding(.bottom, 3.0)
+                        .padding(.bottom, 0)
                         .ignoresSafeArea()
                 }
             }
-
+             .edgesIgnoringSafeArea(.top)
+             .navigationBarItems(
+                leading:
+                    Text("List")
+                        .font(Font.title)
+             )
+             .navigationBarTitleDisplayMode(.inline)
         }
     }
 

@@ -44,6 +44,8 @@ enum ToDoAction: Action {
                      itemContent: String)
     case dropTodoItem(categoryID: String,
                       itemID: String)
+    case checkTodoItem(categoryID: String,
+                      itemID: String)
     case updateTodoItem(categoryID: String,
                         itemID: String,
                         itemContent: String)

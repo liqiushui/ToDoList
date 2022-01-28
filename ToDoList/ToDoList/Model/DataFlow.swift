@@ -11,7 +11,9 @@ func addCategory(s: AppState, categoryName: String) -> AppState {
     var categorys = s.todoData
     let newCategory = TodoCategory(categoryName: categoryName)
     categorys[newCategory.categoryID] = newCategory
-    return AppState(todoData: categorys, searchKey: s.searchKey)
+    return AppState(todoData: categorys,
+                    searchKey: s.searchKey,
+                    addCategoryID: s.addCategoryID)
 }
 
 func addToDoItem(s: AppState, content: String, categoryID: String) -> AppState {
@@ -23,7 +25,62 @@ func addToDoItem(s: AppState, content: String, categoryID: String) -> AppState {
         /// set item to category
         categorys[newCategory.categoryID] = newCategory
     }
-    return AppState(todoData: categorys, searchKey: s.searchKey)
+    return AppState(todoData: categorys,
+                    searchKey: s.searchKey,
+                    addCategoryID: s.addCategoryID)
+}
+
+func updateToDoItem(s: AppState,
+                    itemID: String,
+                    content: String,
+                    categoryID: String) -> AppState {
+    var categorys = s.todoData
+    if var newCategory = s.todoData[categoryID],
+       let oldItem = newCategory.itemMap[itemID] {
+        /// make item
+        let item = TodoItem(ID: oldItem.ID,
+                            categoryID: oldItem.categoryID,
+                            todoContent: content,
+                            done: oldItem.done)
+        newCategory.itemMap[item.ID] = item
+        /// set item to category
+        categorys[newCategory.categoryID] = newCategory
+    }
+    return AppState(todoData: categorys,
+                    searchKey: s.searchKey,
+                    addCategoryID: s.addCategoryID)
+}
+
+func dropToDoItem(s: AppState,
+                  itemID: String,
+                  categoryID: String) -> AppState {
+    var categorys = s.todoData
+    if var newCategory = s.todoData[categoryID] {
+        /// make item
+        newCategory.itemMap.removeValue(forKey: itemID)
+        /// set item to category
+        categorys[newCategory.categoryID] = newCategory
+    }
+    return AppState(todoData: categorys,
+                    searchKey: s.searchKey,
+                    addCategoryID: s.addCategoryID)
+}
+
+func checkToDoItem(s: AppState,
+                  itemID: String,
+                  categoryID: String) -> AppState {
+    var categorys = s.todoData
+    if var newCategory = s.todoData[categoryID],
+       var oldItem = newCategory.itemMap[itemID] {
+        /// make item
+        oldItem.done.toggle()
+        newCategory.itemMap[oldItem.ID] = oldItem
+        /// set item to category
+        categorys[newCategory.categoryID] = newCategory
+    }
+    return AppState(todoData: categorys,
+                    searchKey: s.searchKey,
+                    addCategoryID: s.addCategoryID)
 }
 
 let todoStateReducer: Reducer<AppState> = { old, action in
@@ -37,6 +94,15 @@ let todoStateReducer: Reducer<AppState> = { old, action in
             return AppState(todoData: old.todoData,
                             searchKey: old.searchKey,
                             addCategoryID: categoryID)
+        case .updateTodoItem(let categoryID, let itemID, let content):
+            return updateToDoItem(s: old,
+                                  itemID: itemID,
+                                  content: content,
+                                  categoryID: categoryID)
+        case .dropTodoItem(let categoryID, let itemID):
+            return dropToDoItem(s: old, itemID: itemID, categoryID: categoryID)
+        case .checkTodoItem(let categoryID, let itemID):
+            return checkToDoItem(s: old, itemID: itemID, categoryID: categoryID)
         default:
             break
         }

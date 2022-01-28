@@ -16,12 +16,29 @@ struct TodoItem: Codable {
     let categoryID: String
     /// content
     let todoContent: String
+    /// done
+    var done: Bool
+    /// use by list diff, update the cell which really changed
+    var listID: String {
+        return "\(ID)_\(createTS)_\(categoryID)_\(todoContent)_\(done)"
+    }
     
-    init(categoryID: String, todoContent: String) {
-        ID = UUID().uuidString
-        createTS = Date().timeIntervalSince1970
+    init(ID: String = UUID().uuidString,
+         createTS: Double = Date().timeIntervalSince1970,
+         categoryID: String,
+         todoContent: String,
+         done: Bool = false) {
+        self.ID = ID
+        self.createTS = createTS
         self.categoryID = categoryID
         self.todoContent = todoContent
+        self.done = done
+    }
+}
+
+extension TodoItem: CustomDebugStringConvertible {
+    var debugDescription: String {
+        return "ID: \(ID), createTS: \(createTS), categoryID: \(categoryID), todoContent: \(todoContent), done: \(done)"
     }
 }
 
@@ -40,5 +57,18 @@ struct TodoCategory: Codable {
         createTS = Date().timeIntervalSince1970
         self.categoryName = categoryName
         itemMap = [:]
+    }
+    
+    func displayTodos() -> [TodoItem] {
+        Array(itemMap.values).sorted { prev, next in
+            if (prev.done && !next.done) || (!prev.done && next.done) {
+                return prev.done ? false : true
+            }
+            return prev.createTS < next.createTS
+        }
+    }
+    
+    var isEmpty: Bool {
+        return itemMap.isEmpty
     }
 }
