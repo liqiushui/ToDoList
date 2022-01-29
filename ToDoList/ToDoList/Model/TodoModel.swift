@@ -68,6 +68,27 @@ struct TodoCategory: Codable {
         }
     }
     
+    func filter(searchText: String) -> TodoCategory? {
+        guard !searchText.isEmpty else {
+            return self
+        }
+        let searchItemMap = itemMap.filter { item in
+            return item.value.todoContent.localizedCaseInsensitiveContains(searchText)
+        }
+        if !searchItemMap.isEmpty {
+            var cp = self
+            cp.itemMap = searchItemMap
+            return cp
+        }
+        
+        if categoryName.localizedCaseInsensitiveContains(searchText) {
+            var cp = self
+            cp.itemMap = [:]
+            return cp
+        }
+        return nil
+    }
+    
     var isEmpty: Bool {
         return itemMap.isEmpty
     }

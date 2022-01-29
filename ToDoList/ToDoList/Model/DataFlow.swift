@@ -12,7 +12,6 @@ func addCategory(s: AppState, categoryName: String) -> AppState {
     let newCategory = TodoCategory(categoryName: categoryName)
     categorys[newCategory.categoryID] = newCategory
     return AppState(todoData: categorys,
-                    searchKey: s.searchKey,
                     addCategoryID: s.addCategoryID)
 }
 
@@ -26,7 +25,6 @@ func addToDoItem(s: AppState, content: String, categoryID: String) -> AppState {
         categorys[newCategory.categoryID] = newCategory
     }
     return AppState(todoData: categorys,
-                    searchKey: s.searchKey,
                     addCategoryID: s.addCategoryID)
 }
 
@@ -47,7 +45,6 @@ func updateToDoItem(s: AppState,
         categorys[newCategory.categoryID] = newCategory
     }
     return AppState(todoData: categorys,
-                    searchKey: s.searchKey,
                     addCategoryID: s.addCategoryID)
 }
 
@@ -62,7 +59,6 @@ func dropToDoItem(s: AppState,
         categorys[newCategory.categoryID] = newCategory
     }
     return AppState(todoData: categorys,
-                    searchKey: s.searchKey,
                     addCategoryID: s.addCategoryID)
 }
 
@@ -79,7 +75,6 @@ func checkToDoItem(s: AppState,
         categorys[newCategory.categoryID] = newCategory
     }
     return AppState(todoData: categorys,
-                    searchKey: s.searchKey,
                     addCategoryID: s.addCategoryID)
 }
 
@@ -92,7 +87,6 @@ let todoStateReducer: Reducer<AppState> = { old, action in
             return addToDoItem(s: old, content: itemContent, categoryID: categoryID)
         case .switchCategory(let categoryID):
             return AppState(todoData: old.todoData,
-                            searchKey: old.searchKey,
                             addCategoryID: categoryID)
         case .updateTodoItem(let categoryID, let itemID, let content):
             return updateToDoItem(s: old,

@@ -9,13 +9,10 @@ import Foundation
 
 struct AppState: Codable, ReduxState {
     let todoData: [String: TodoCategory]
-    let searchKey: String?
     let addCategoryID: String?
     init(todoData: [String: TodoCategory] = [:],
-         searchKey: String? = nil,
          addCategoryID: String? = nil) {
         self.todoData = todoData
-        self.searchKey = searchKey
         self.addCategoryID = addCategoryID
     }
     

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var store: DefaultStore<AppState>
-    
+
     init() {
         UINavigationBar
             .appearance()
@@ -23,14 +23,18 @@ struct ContentView: View {
                     /// make list content not under status bar
                     Spacer()
                         .frame(height: 20)
+
                     HStack(alignment: .top, spacing: 0) {
                         ToDoList()
                             .padding(.bottom, 70)
                             .clipped()
+                            .border(.green)
                     }
+
                 }
                 /// set background color under status bar
                 .background(Color("listbg"))
+
 
 
                 VStack(){
@@ -50,7 +54,6 @@ struct ContentView: View {
              .navigationBarTitleDisplayMode(.inline)
         }
     }
-
 }
 
 struct ContentView_Previews: PreviewProvider {

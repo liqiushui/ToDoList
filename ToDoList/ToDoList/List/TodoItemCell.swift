@@ -8,13 +8,6 @@
 import Foundation
 import SwiftUI
 
-class WrapTodoItem: ObservableObject {
-    @Published var item: TodoItem
-    init(item: TodoItem) {
-        self.item = item
-    }
-}
-
 
 struct ToToItemCell: View {
     @EnvironmentObject var store: DefaultStore<AppState>
