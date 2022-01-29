@@ -69,17 +69,28 @@ struct ToToItemCell: View {
                         Log.d("todo item check: \(text)")
                         checkToDo()
                 }
-                
                 Group {
-                    TextField(item.todoContent, text: $text, onCommit: {
-                        Log.d("todo item commit: \(text)")
-                        switchEidtMode()
-                        editToDo(content: text)
-                    })
-                        .font(Font.body)
-                        .padding([.top, .bottom], 10)
-                        .foregroundStyle(.black)
-                        .focused($isFocused)
+                    ZStack {
+                        TextField(item.todoContent, text: $text, onCommit: {
+                            Log.d("todo item commit: \(text)")
+                            switchEidtMode()
+                            editToDo(content: text)
+                        })
+                            .font(Font.body)
+                            .padding([.top, .bottom], 10)
+                            .foregroundStyle(.black)
+                            .focused($isFocused)
+                            .opacity(item.done ? 0 : 1.0)
+                        HStack {
+                            Text(item.todoContent)
+                                .strikethrough()
+                                .font(Font.body)
+                                .padding([.top, .bottom], 10)
+                                .foregroundStyle(.gray)
+                            Spacer()
+                        }.opacity(item.done ? 1.0 : 0)
+
+                    }
                     Spacer()
                 }.overlay {
                     if !editmode {
