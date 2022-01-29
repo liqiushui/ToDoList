@@ -17,7 +17,7 @@ func saveAppState(appstate: AppState) async {
     }
 }
 
-func loadAppState() -> AppState? {
+func loadAppState() async -> AppState? {
     Log.d("load appstate from user defaults")
     if let encoded = UserDefaults.standard.object(forKey: storagekey) as? Data,
        let state = try? JSONDecoder().decode(AppState.self, from: encoded) {
@@ -29,8 +29,34 @@ func loadAppState() -> AppState? {
 
 /// storage state to disk
 let storage: Middleware<AppState> = { (appstate, action, dispatch) in
-    Task {
-        await saveAppState(appstate: appstate)
+    if let todoAction = action as? ToDoAction {
+        switch todoAction {
+        case ToDoAction.`init`, .loadCacheState:
+            break
+        default:
+            Task {
+                await saveAppState(appstate: appstate)
+            }
+        }
+    }
+
+    Log.d("Middleware storage end")
+}
+
+let load: Middleware<AppState> = { (appstate, action, dispatch) in
+    if let todoAction = action as? ToDoAction {
+        switch todoAction {
+        case .loadCacheState:
+            Task {
+                if let state = await loadAppState() {
+                    DispatchQueue.main.async {
+                        dispatch(ToDoAction.updateAppState(state: state))
+                    }
+                }
+            }
+        default:
+            break
+        }
     }
     Log.d("Middleware storage end")
 }

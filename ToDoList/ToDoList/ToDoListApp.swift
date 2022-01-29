@@ -14,9 +14,10 @@ struct ToDoListApp: App {
     init() {
         store = DefaultStore<AppState>(
             reducer: todoStateReducer,
-            initialState: loadAppState() ?? AppState(),
-            middlewares: [storage]
+            initialState: AppState(),
+            middlewares: [load, storage]
         )
+        store.dispatch(action: ToDoAction.loadCacheState)
     }
 
     var body: some Scene {

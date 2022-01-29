@@ -49,4 +49,5 @@ enum ToDoAction: Action {
     case changeSearchKey(keyword: String?, originState: AppState)
     case switchCategory(categoryID: String?)
     case updateAppState(state: AppState)
+    case loadCacheState
 }
