@@ -14,9 +14,9 @@ struct ToDoListApp: App {
     init() {
         store = DefaultStore<AppState>(
             reducer: todoStateReducer,
-            initialState: AppState()
+            initialState: loadAppState() ?? AppState(),
+            middlewares: [storage]
         )
-        store.dispatch(action: ToDoAction.addCategory(categoryName: "123"))
     }
 
     var body: some Scene {

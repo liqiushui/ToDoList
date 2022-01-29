@@ -21,7 +21,7 @@ typealias Dispatcher = (Action) -> Void
 // a middleware is any function defined on a ReduxState
 // that takes in that State, an Action and a Dispatcher
 // and returns nothing
-typealias Middleware <S: ReduxState> = (S, Action, Dispatcher) -> Void
+typealias Middleware <S: ReduxState> = (S, Action, @escaping Dispatcher) -> Void
 
 
 protocol Store: ObservableObject {
@@ -57,8 +57,13 @@ class DefaultStore <S: ReduxState>: Store {
         // create new state
         state = reducer(state, action)
         // and then apply middlewares
+        let _dispatcher: Dispatcher = { [weak self] ac in
+            DispatchQueue.main.async {
+                self?.dispatch(action: ac)
+            }
+        }
         middlewares.forEach { middleware in
-            middleware(state, action, dispatch)
+            middleware(state, action, _dispatcher)
         }
     }
     

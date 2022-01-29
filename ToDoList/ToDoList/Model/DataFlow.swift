@@ -97,6 +97,8 @@ let todoStateReducer: Reducer<AppState> = { old, action in
             return dropToDoItem(s: old, itemID: itemID, categoryID: categoryID)
         case .checkTodoItem(let categoryID, let itemID):
             return checkToDoItem(s: old, itemID: itemID, categoryID: categoryID)
+        case .updateAppState(let state):
+            return state
         default:
             break
         }
