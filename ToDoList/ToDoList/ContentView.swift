@@ -26,7 +26,7 @@ struct ContentView: View {
 
                     HStack(alignment: .top, spacing: 0) {
                         ToDoList()
-                            .padding(.bottom, 70)
+                            .padding(.bottom, 55)
                             .clipped()
                             .border(.green)
                     }
