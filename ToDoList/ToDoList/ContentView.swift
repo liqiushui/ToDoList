@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  ToDoList
 //
-//  Created by lilun.ios on 2022/1/26.
+//  Created by ddyt on 2022/1/26.
 //
 
 import SwiftUI
@@ -20,23 +20,19 @@ struct ContentView: View {
         NavigationView {
             ZStack {
                 VStack {
-                    /// make list content not under status bar
                     Spacer()
                         .frame(height: 20)
-
-                    HStack(alignment: .top, spacing: 0) {
+                        .background(.green)
+                        .clipped()
+                    VStack {
                         ToDoList()
                             .padding(.bottom, 55)
-                            .clipped()
                             .border(.green)
                     }
-
-                }
-                /// set background color under status bar
-                .background(Color("listbg"))
-
-
-
+                }.clipped()
+                 .padding(.top, 20)
+                 .background(Color("listbg"))
+                
                 VStack(){
                     Spacer()
                     InputBar(text: "")

@@ -2,7 +2,7 @@
 //  TodoModel.swift
 //  ToDoList
 //
-//  Created by lilun.ios on 2022/1/26.
+//  Created by ddyt on 2022/1/26.
 //
 
 import Foundation
@@ -64,7 +64,7 @@ struct TodoCategory: Codable {
             if (prev.done && !next.done) || (!prev.done && next.done) {
                 return prev.done ? false : true
             }
-            return prev.createTS < next.createTS
+            return prev.createTS > next.createTS
         }
     }
     

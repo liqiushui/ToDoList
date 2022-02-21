@@ -2,7 +2,7 @@
 //  InputBar.swift
 //  ToDoList
 //
-//  Created by lilun.ios on 2022/1/27.
+//  Created by ddyt on 2022/1/27.
 //
 
 import Foundation
@@ -95,7 +95,7 @@ extension InputBar {
         Menu {
             Button(Self.AddCategoryName,
                    action: self.switchCategory(categoryID: nil))
-            ForEach(store.getCurrent().sortedCategorys(),
+            ForEach(store.getCurrent().sortedCategorys().reversed(),
                     id: \.self.categoryID) { c in
                 Button(c.categoryName,
                        action: self.switchCategory(categoryID: c.categoryID))

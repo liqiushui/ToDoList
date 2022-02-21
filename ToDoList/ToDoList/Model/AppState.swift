@@ -2,7 +2,7 @@
 //  AppState.swift
 //  ToDoList
 //
-//  Created by lilun.ios on 2022/1/26.
+//  Created by ddyt on 2022/1/26.
 //
 
 import Foundation
@@ -28,7 +28,9 @@ struct AppState: Codable, ReduxState {
     }
     
     func sortedCategorys() -> [TodoCategory] {
-        let sortDatas = Array(todoData.values)
+        let sortDatas = Array(todoData.values).sorted { prev, next in
+            return prev.createTS > next.createTS
+        }
         return sortDatas
     }
 }

@@ -2,7 +2,7 @@
 //  TodoItemCell.swift
 //  ToDoList
 //
-//  Created by lilun.ios on 2022/1/28.
+//  Created by ddyt on 2022/1/28.
 //
 
 import Foundation
@@ -97,6 +97,7 @@ struct ToToItemCell: View {
                         /// long press gesture conflict with textfield
                         /// so put long gseture on overlay view, which will be removed after long pressed
                         Color.white.opacity(0.01)
+                            .onTapGesture {  }
                             .onLongPressGesture(minimumDuration: 1.0, perform: {
                                 switchEidtMode()
                                 Log.d("\(item.todoContent) editmode chaneg to \(editmode)")
